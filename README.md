@@ -19,7 +19,7 @@ The system architecture is designed to support a physical ESP32-powered capaciti
 ### 🛡️ Guardian Portal (The Trusted Contact)
 - **Code-Based Access**: Guardians access the portal using a dynamically generated `Guardian Access Code` tied to their phone number.
 - **Live Monitoring Dashboard**: A dark-themed command center providing real-time status updates (`Safe`, `Caution`, `Emergency`).
-- **Live Tracking Map**: Visualizes the user's GPS coordinates in real-time when tracking is active.
+- **Interactive Tracking Map**: Visualizes the user's GPS coordinates in real-time when tracking is active. Includes a quick-recenter button to instantly snap back to the user's location.
 - **High-Visibility Emergency State**: Immediate actionable alerts allowing the guardian to call the user, view their exact coordinates, or review silent tap communications.
 
 ---
