@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nooraya-ivory: #fff9ef;
+    --nooraya-warm-white: #ffffff;
+    --nooraya-champagne-gold: #d4af37;
+    --nooraya-antique-gold: #b58a2a;
+    --nooraya-charcoal: #1c1c1c;
+    --nooraya-soft-grey: #8a8a8a;
+    --nooraya-emergency-red: #c1121f;
+
+    --nooraya-display-font: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --nooraya-body-font: Inter, Helvetica, Arial, sans-serif;
+  }
+
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/cormorant-garamond-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  body {
+    @apply bg-nooraya-ivory text-nooraya-charcoal font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-nooraya-charcoal tracking-tight;
+  }
+}
+
+@layer components {
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/50 rounded-2xl shadow-sm;
+  }
+
+  .glass-card-dark {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  /* Gold gradient button */
+  .btn-gold {
+    @apply bg-gradient-to-br from-[#E8D081] to-[#B58A2A] text-white font-semibold 
+           rounded-xl shadow-lg shadow-amber-900/20 
+           hover:shadow-xl hover:shadow-amber-900/30 
+           active:scale-[0.98] transition-all duration-200;
+  }
+
+  .btn-gold-outline {
+    @apply border-2 border-nooraya-champagne-gold text-nooraya-champagne-gold 
+           rounded-xl hover:bg-nooraya-champagne-gold hover:text-white 
+           active:scale-[0.98] transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply bg-nooraya-emergency-red text-white font-bold rounded-xl 
+           shadow-lg shadow-red-500/30 hover:bg-red-800 
+           active:scale-[0.98] transition-all duration-200;
+  }
+
+  .btn-charcoal {
+    @apply bg-nooraya-charcoal text-white font-semibold rounded-xl 
+           hover:bg-black active:scale-[0.98] transition-all duration-200;
+  }
+
+  /* Input styling */
+  .input-nooraya {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white/60 
+           font-body text-nooraya-charcoal placeholder:text-gray-400
+           focus:outline-none focus:border-nooraya-champagne-gold focus:ring-2 
+           focus:ring-amber-500/20 transition-all duration-200;
+  }
+
+  .select-nooraya {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white/60 
+           font-body text-nooraya-charcoal appearance-none
+           focus:outline-none focus:border-nooraya-champagne-gold focus:ring-2 
+           focus:ring-amber-500/20 transition-all duration-200;
+  }
+
+  /* Status pulse */
+  .pulse-green { @apply bg-green-500; }
+  .pulse-yellow { @apply bg-yellow-500; }
+  .pulse-red { @apply bg-red-500; }
+
+  .pulse-ring-green { @apply ring-green-500/40; }
+  .pulse-ring-yellow { @apply ring-yellow-500/40; }
+  .pulse-ring-red { @apply ring-red-500/40; }
+
+  /* Sidebar active link */
+  .sidebar-link {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-xl text-nooraya-soft-grey 
+           hover:text-nooraya-ivory hover:bg-white/5 transition-all duration-200;
+  }
+  .sidebar-link-active {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-xl 
+           text-nooraya-champagne-gold bg-nooraya-champagne-gold/10 
+           border-l-2 border-nooraya-champagne-gold;
+  }
+}
+
+@layer utilities {
+  /* Animate in */
+  .animate-in {
+    animation: animateIn 0.3s ease-out;
+  }
+  .fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+  .slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes animateIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-nooraya-soft-grey/30 rounded-full;
+  }
+}
+
+/* Leaflet overrides for Nooraya theme */
+.leaflet-container {
+  border-radius: 1rem;
+  z-index: 1;
+}
+.leaflet-control-attribution {
+  font-size: 9px !important;
+  opacity: 0.6;
+}

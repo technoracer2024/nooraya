@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nooraya Final Branding — Variation A</title>
+    <style>
+      :root {
+        --ivory: #fff9ef;
+        --gold: #b58a2a;
+        --charcoal: #1c1c1c;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; color: var(--charcoal); background: var(--ivory); }
+      main { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 64px 0 90px; }
+      header { padding-bottom: 26px; border-bottom: 1px solid rgba(181, 138, 42, 0.35); }
+      header p, .label { margin: 0; color: var(--gold); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+      h1 { margin: 10px 0 0; font-family: Georgia, serif; font-size: 32px; font-weight: 400; }
+      .primary { display: grid; min-height: 410px; place-items: center; border-bottom: 1px solid rgba(181, 138, 42, 0.2); }
+      .primary img { width: min(780px, 90%); }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 22px; }
+      .card { position: relative; display: grid; min-height: 350px; place-items: center; border: 1px solid rgba(181, 138, 42, 0.25); background: #fffdf8; }
+      .card.dark { background: var(--charcoal); }
+      .card img.wordmark { width: 78%; }
+      .card img.hallmark { width: 160px; }
+      .card .label { position: absolute; top: 22px; left: 24px; }
+      .card.dark .label { color: #d4af37; }
+      .palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 54px; }
+      .swatch { min-height: 130px; padding: 18px; border: 1px solid rgba(181, 138, 42, 0.2); }
+      .swatch span { display: block; margin-top: 66px; font-size: 11px; letter-spacing: 0.08em; }
+      @media (max-width: 720px) {
+        .grid, .palette { grid-template-columns: 1fr; }
+        .primary { min-height: 300px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p>Selected identity direction</p>
+        <h1>Nooraya — Variation A</h1>
+      </header>
+
+      <section class="primary">
+        <img src="masters/nooraya-variation-a-exact-source.png" alt="Exact selected Nooraya Variation A identity" />
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <span class="label">Exact wordmark lockup</span>
+          <img class="wordmark" src="assets/nooraya-primary-lockup-exact.png" alt="Exact Nooraya wordmark and tagline" />
+        </article>
+        <article class="card">
+          <span class="label">Exact selected hallmark</span>
+          <img class="hallmark" src="assets/nooraya-hallmark-exact.png" alt="Exact selected Nooraya gold N hallmark" />
+        </article>
+      </section>
+
+      <section class="palette" aria-label="Brand colours">
+        <div class="swatch" style="background:#fff9ef"><span>Ivory · #FFF9EF</span></div>
+        <div class="swatch" style="background:#b58a2a;color:#fff"><span>Antique Gold · #B58A2A</span></div>
+        <div class="swatch" style="background:#d4af37"><span>Champagne · #D4AF37</span></div>
+        <div class="swatch" style="background:#1c1c1c;color:#fff"><span>Charcoal · #1C1C1C</span></div>
+      </section>
+    </main>
+  </body>
+</html>

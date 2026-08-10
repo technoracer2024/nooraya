@@ -1,0 +1,12 @@
+:root {
+  --nooraya-ivory: #fff9ef;
+  --nooraya-warm-white: #ffffff;
+  --nooraya-champagne-gold: #d4af37;
+  --nooraya-antique-gold: #b58a2a;
+  --nooraya-charcoal: #1c1c1c;
+  --nooraya-soft-grey: #8a8a8a;
+  --nooraya-emergency-red: #c1121f;
+
+  --nooraya-display-font: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --nooraya-body-font: Inter, Helvetica, Arial, sans-serif;
+}
