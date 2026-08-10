@@ -146,7 +146,11 @@ export default function DashboardPage() {
 
       {/* 4. Map section */}
       <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-sm border border-nooraya-soft-grey">
-        <MapView routePoints={trackingState === 'tracking' ? trackingRoute : undefined} />
+        <MapView 
+          center={location ? [location.lat, location.lng] : undefined}
+          routePoints={trackingState === 'tracking' ? trackingRoute : undefined} 
+          markers={location ? [{lat: location.lat, lng: location.lng, color: 'gold'}] : []}
+        />
       </div>
 
       {/* 5. Quick stats row */}

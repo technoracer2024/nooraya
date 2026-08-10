@@ -178,7 +178,6 @@ export default function GuardianDashboard() {
                 center={location ? [location.lat, location.lng] : undefined} 
                 routePoints={trackingState === 'tracking' ? trackingRoute : undefined} 
                 markers={location ? [{lat: location.lat, lng: location.lng, color: 'red'}] : []}
-                className="pointer-events-none"
              />
           </div>
         </div>

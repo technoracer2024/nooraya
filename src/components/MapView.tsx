@@ -59,6 +59,31 @@ const LocationMarker = ({ showUserLocation }: { showUserLocation?: boolean }) =>
   );
 };
 
+const RecenterButton = ({ center }: { center?: [number, number] }) => {
+  const map = useMap();
+  
+  return (
+    <div className="absolute bottom-4 right-4 z-[400]">
+       <button 
+         onClick={(e) => {
+           e.stopPropagation();
+           if (center) {
+             map.flyTo(center, 15);
+           } else {
+             map.locate().on('locationfound', function (evt) {
+               map.flyTo(evt.latlng, 15);
+             });
+           }
+         }}
+         className="p-3 bg-white text-nooraya-charcoal rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer"
+         title="Recenter Map"
+       >
+          <LocateFixed size={20} />
+       </button>
+    </div>
+  );
+};
+
 export const MapView = ({
   center = [28.6139, 77.2090],
   zoom = 15,
@@ -122,15 +147,8 @@ export const MapView = ({
         ))}
 
         <LocationMarker showUserLocation={showUserLocation} />
+        <RecenterButton center={center} />
       </MapContainer>
-      
-      {showUserLocation && (
-        <div className="absolute bottom-4 right-4 z-[400]">
-           <button className="p-3 bg-white text-nooraya-charcoal rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-              <LocateFixed size={20} />
-           </button>
-        </div>
-      )}
     </div>
   );
 };
