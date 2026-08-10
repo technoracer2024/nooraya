@@ -12,6 +12,7 @@ export default function DashboardPage() {
     trackingState,
     trackingStartTime,
     trackingRoute,
+    location,
     setLocation,
     startTracking,
     addTrackingPoint,
