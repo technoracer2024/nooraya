@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { notifyAllContacts } from '../lib/twilio'
 
 // ── Types ──────────────────────────────────────────────
 
@@ -308,12 +309,17 @@ export const useStore = create<AppState>((set, get) => {
 
     activateSOS: () => {
       const loc = get().location
+      const user = get().userProfile
       const alert: AlertRecord = {
         id: generateId(), type: 'sos', timestamp: Date.now(), location: loc, status: 'active', source: 'virtual_button',
       }
       const history = [...get().alertHistory, alert]
       saveHistory(history)
       syncState({ sosState: 'active', alertLevel: 'red', alertHistory: history } as Partial<AppState>)
+      
+      if (user) {
+        notifyAllContacts(user.trustedContacts, user.name, 'sos', loc ? `https://maps.google.com/?q=${loc.lat},${loc.lng}` : null).catch(console.error)
+      }
     },
 
     resolveSOS: () => {
@@ -332,7 +338,14 @@ export const useStore = create<AppState>((set, get) => {
     sendTapMessage: (msg) => syncState({ latestMessage: msg, latestMessageTimestamp: Date.now() }),
 
     startCheckIn: (durationMinutes) => syncState({ checkInState: 'active', checkInEndTime: Date.now() + durationMinutes * 60 * 1000, alertLevel: 'green' }),
-    missCheckIn: () => syncState({ checkInState: 'yellow', alertLevel: 'yellow' }),
+    missCheckIn: () => {
+      syncState({ checkInState: 'yellow', alertLevel: 'yellow' })
+      const user = get().userProfile
+      const loc = get().location
+      if (user) {
+        notifyAllContacts(user.trustedContacts, user.name, 'checkin_missed', loc ? `https://maps.google.com/?q=${loc.lat},${loc.lng}` : null).catch(console.error)
+      }
+    },
     resolveCheckIn: () => syncState({ checkInState: 'idle', checkInEndTime: null, alertLevel: 'green' }),
 
     startTracking: () => syncState({ trackingState: 'tracking', trackingStartTime: Date.now(), trackingRoute: [] }),
@@ -357,11 +370,16 @@ export const useStore = create<AppState>((set, get) => {
 
     sendQuickAlert: (message) => {
       const loc = get().location
+      const user = get().userProfile
       const quickAlert = { message, timestamp: Date.now(), location: loc }
       const alert: AlertRecord = { id: generateId(), type: 'quick_alert', timestamp: Date.now(), location: loc, status: 'resolved', source: 'quick_alert', message }
       const history = [...get().alertHistory, alert]
       saveHistory(history)
       syncState({ lastQuickAlert: quickAlert, alertHistory: history } as Partial<AppState>)
+      
+      if (user) {
+        notifyAllContacts(user.trustedContacts, user.name, 'quick_alert', loc ? `https://maps.google.com/?q=${loc.lat},${loc.lng}` : null, message).catch(console.error)
+      }
     },
 
     addAlert: (alert) => {
