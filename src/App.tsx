@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { useStore } from './store/useStore'
 import { Layout } from './components/Layout'
 import { LoginPage } from './pages/LoginPage'
@@ -29,6 +30,7 @@ function ProtectedGuardianRoute({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <BrowserRouter>
+      <SpeedInsights />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/user" element={<ProtectedUserRoute><Layout mode="user"><DashboardPage /></Layout></ProtectedUserRoute>} />
